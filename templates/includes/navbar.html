@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light "  style="background-color: #aed2ec;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class=" btn btn-success" href=" {% url 'index_url' %} ">Home <span class="sr-only">(current)</span></a>
+      </li> 
+      &nbsp;&nbsp;
+      <li class="nav-item">
+        <a class=" btn btn-info" href=" {% url 'users_url' %} ">All users <span class="sr-only">(current)</span></a>
+      </li> 
+      &nbsp;&nbsp;
+    </ul>
+
+    {% if request.user.is_authenticated %}
+    <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+      {% endif %}
+      <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+    {% else %}
+
+    <a href="{% url 'account_signup' %}" class="form-inline my-2 my-lg-0 btn btn btn-secondary " role="button" aria-pressed="true">Register</a>
+
+    {% endif %}
+
+  </div>
+</nav>

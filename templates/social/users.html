@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% block head_title %} User {% endblock %}
+
+{% block content %} 
+
+<div class="container text-dark mt-4 ">
+  <div class="row justify-content-md-center ">
+    <div class="col-md-7">
+
+    {% for user in users_list %} 
+      <div class="card" >              
+                              
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Username: &nbsp;</strong>{{user.username}}</li>
+            <li class="list-group-item"><strong>Имя: &nbsp;</strong>{{user.first_name}}</li>
+            <li class="list-group-item"><strong>Фамилия: &nbsp;</strong>{{user.last_name}}</li>
+          </ul>
+
+          {% if user.profile.avatar %}
+           <img src="{{user.profile.avatar.url}}" class="rounded mx-auto d-block" width="300" alt="No image">
+          {% endif %}
+          
+          <div class="card-body">
+            <h5 class="card-title">Обо мне:</h5>
+            <p class="card-text">{{user.profile.about}}</p>
+          </div>          
+      </div>
+      <br>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+ 
