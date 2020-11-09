@@ -17,6 +17,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+from .settings import BASE_DIR
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
